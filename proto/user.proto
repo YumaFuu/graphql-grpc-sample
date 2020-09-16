@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/empty.proto";
+
+enum Sex {
+  SEX_UNKNOWN = 0;
+  MALE = 1;
+  FEMALE = 2;
+  OTHER = 3;
+}
+
+message User {
+  uint64 id = 1;
+  string name = 2;
+  uint32 age = 3;
+  Sex sex = 4;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+service UserService {
+  rpc All(google.protobuf.Empty) returns (UserList);
+  rpc Get(GetRequest) returns (User);
+  rpc Create(CreateRequest) returns (User);
+  rpc Update(UpdateRequest) returns (User);
+}
+
+message GetRequest {
+  uint64 id = 1;
+}
+
+message CreateRequest {
+  uint64 name = 1;
+  uint32 age = 2;
+  Sex sex = 3;
+}
+
+message UpdateRequest {
+  uint64 id = 1;
+  uint64 name = 2;
+  uint32 age = 3;
+  Sex sex = 4;
+}
