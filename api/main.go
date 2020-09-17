@@ -32,7 +32,7 @@ func (s server) All(c context.Context, r *empty.Empty) (*user.UserList, error) {
 
 func (s server) Get(c context.Context, r *user.GetRequest) (*user.User, error) {
 	u := user.User{
-		Id:   1,
+		Id:   r.Id,
 		Name: "yuma",
 		Age:  22,
 		Sex:  user.Sex_MALE,
